@@ -1,19 +1,17 @@
 'use strict';
 
-var md5File = require('md5-file'),
-    _last, _file, _sep = '/',
-    color   = require('bash-color');
+if (!Array.prototype.last) Array.prototype.last = function() {
+    return this[this.length - 1];
+};
 
 (function(){
-    module.exports = function (testfile) {
-        _sep  = (testfile.indexOf(_sep) < 0) ? '\\' : _sep;
-        _file = testfile.split(_sep);
-        _last = _file[(_file.length - 1)];
-        console.log(
+    module.exports = function (testfile, cnsl=null) {
+        const color = require('bash-color');
+        (cnsl==null ? console : cnsl).log(
             'MD5: ' +
-            color.wrap(md5File.sync(testfile), color.colors.BLUE, color.styles.bold) +
+            color.wrap(require('md5-file').sync(testfile), color.colors.BLUE, color.styles.bold) +
             ' File: ' +
-            color.wrap(_last, color.colors.PURPLE, color.styles.bold)
+            color.wrap(testfile.split(testfile.indexOf('/')<0 ? '\\' : '/').last(), color.colors.PURPLE, color.styles.bold)
         );
         return;
     };
