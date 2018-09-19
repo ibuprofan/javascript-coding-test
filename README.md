@@ -3,10 +3,12 @@ rudimentary JS unit test framework (the challenge)
 
 ### Terms of the Exercise
 
-Try and stay away from libraries if possible
+__Try and stay away from libraries if possible*__
 You can take as long as you like to complete the exercise, but for an indicative timescale we expect a senior developer can accomplish this in an hour.
 You may use online resources to assist you with specific techniques, syntax etc. but please do not just copy code.
 Please don't share this exercise with any third party
+
+* *I understand that this refers to not using existing libraries and not to avoid encapsulating the code in form of a JS module* (MS)
 
 ### The Challenge
 
