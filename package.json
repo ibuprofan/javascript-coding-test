@@ -1,0 +1,29 @@
+{
+  "name": "rjs-utf",
+  "version": "0.0.1",
+  "description": "rudimentary JS unit test framework (the challenge)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://martinswiderski@github.com/ibuprofan/rjs-utf.git"
+  },
+  "keywords": [
+    "unit",
+    "tests",
+    "tdd",
+    "assertion",
+    "assertEqual"
+  ],
+  "author": "Martin Swiderski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ibuprofan/rjs-utf/issues"
+  },
+  "homepage": "https://github.com/ibuprofan/rjs-utf#readme"
+}
