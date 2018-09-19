@@ -1,2 +1,2 @@
-# javascript-coding-test
-rudimentary unit test framework (the challenge)
+# rjs-uts
+rudimentary JS unit test framework (the challenge)
