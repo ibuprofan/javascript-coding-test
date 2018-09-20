@@ -2,10 +2,6 @@
 
 var assertResult = require('./assert-result');
 
-function isEqual(expect, given) {
-
-}
-
 /**
  * Asserts "expected" versus "actual",
  * 'failing' the assertion (via Error) if a difference is found.
@@ -16,10 +12,5 @@ function isEqual(expect, given) {
  * @return AssertResult
  */
 module.exports = function assertEquals(message, expected, actual) {
-    return assertResult()
-             .set('message', message)
-             .set(
-               'result',
-               isEqual(expected, actual)
-             );
-}
+    return assertResult().set('message', message).set('result', isEqual(expected, actual));
+};

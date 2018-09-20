@@ -1,47 +1,64 @@
 'use strict';
 
+// String object Polyfill for older browsers
+
+if (!String.prototype.trim) String.prototype.trim = function () { return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, ''); };
+
 var instance = null,
     md5 = require('md5');
 
 function Registry() {
 
-  var _context = '',
-      _id = '';
-      _data = {},
-      _unqcomments = true;
+    var _context = '',
+        _id = '',
+        _data = {},
+        _lookup = {},
+        _unqcomments = true;
 
-  this.id = function() {
-      if (_id === '') {
-          _id = md5((new Date()).getMilliseconds() + '' + Math.random() + '');
-      }
-      return _id;
-  };
+    this.id = function() {
+        return (_id === '') ? _id = md5((new Date()).getMilliseconds() + '' + Math.random() + '') :  _id;
+    };
 
-  this.reset = function() {
-    _context = '';
-    _data = '';
-    _unqcomments = true;
-    return this;
-  };
+    this.reset = function() {
+        _context = '';
+        _data = {};
+        _lookup = {};
+        _unqcomments = true;
+        return this;
+    };
 
-  this.uniqueComments = function(unq) {
-     return (!unq || [true, false].indexOf(unq) === -1)
-            ? _unqcomments
-            : _unqcomments = unq;
-  };
+    this.context = function(c) {
+        return (typeof c === 'undefined') ? _context : _context = c;
+    };
 
-  this.set = function(k, v) {
-    if (typeof _data[k] !== 'undefined' && _unqcomments === true) {
-      throw new Error('Assertion label already exists: ' + k);
+    this.uniqueComments = function(unq) {
+        return (typeof unq === 'undefined' || [true, false].indexOf(unq) === -1) ? _unqcomments : _unqcomments = unq;
+    };
+
+    this.sign = function(k) {
+        return md5((''+k).trim().toLocaleUpperCase());
+    };
+
+    this.set = function(k, v) {
+        var s = this.sign(k);
+        _lookup[s] = k;
+        if (typeof _lookup[s] !== 'undefined' && _unqcomments === true) {
+            throw new Error('Assertion label already exists: ' + k);
+        }
+        _data[s] = v;
+        return this;
+    };
+
+    this.get = function(k) {
+
+        var undef;
+        return (!_lookup[this.sign(k)]) ? undef : _data[this.sign(k)];
     }
-    _data[k] = v;
-    return this;
-  };
-
 }
 
 if (instance === null) {
-  instance = (new Registry()).reset();
+    instance = (new Registry()).reset();
+    instance.id();
 }
 
 module.exports = instance;
