@@ -7,6 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "todo": "EXEC=`grep -inR --exclude-dir=node_modules \"@TODO:\" ./ | sed -e '/package.json/d'`; echo \"\"; echo \"$EXEC\"; echo \"\";",
     "aliases": "alias jasmine-node=./node_modules/.bin/jasmine-node; alias eslint=./node_modules/.bin/eslint; alias istanbul=./node_modules/.bin/istanbul",
     "prep-tests": "rm -fr reports/; mkdir reports/; mkdir reports/eslint/; mkdir reports/junit/; echo \"Reports\n---\" > reports/README.md; echo \"Unit tests results\n---\" > reports/junit/README.md;  echo \"eslint results\n---\" > reports/eslint/README.md",
     "_eslint": "npm run aliases; OUT='./reports/eslint/eslint.txt'; date > $OUT; eslint src/*.js >> $OUT; eslint ./*.js >> $OUT; eslint tests/specs/*.js >> $OUT; echo \"DONE!\"",
