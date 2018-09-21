@@ -1,9 +1,37 @@
 'use strict';
 
+
 function AssertResult() {
+
+    var _self = this;
+
+    this.message = '';
+    this.expected = '';
+    this.given = '';
+    this.status = '';
+    this.result = '';
+    this.errors = [];
+
     this.set = function(key, value) {
-        this[key] = value;
+        if (typeof this[key] !== 'undefined') {
+            this[key] = value;
+        }
         return this;
+    };
+
+    this.toObject = function() {
+        var out = {}, keys = Object.keys(this); // @TODO: Test with older browser and make
+        keys.forEach(function(k) {              // @TODO: polyfill/shim for it if required
+            if (['undefined', 'function'].indexOf(typeof _self[k]) === -1) {
+                out[k] = _self[k];
+            }
+        });
+        console.log(out);
+        return out;
+    };
+
+    this.toJSON = function() {
+        return JSON.stringify(this.toObject());
     }
 }
 

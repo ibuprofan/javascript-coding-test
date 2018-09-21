@@ -2,10 +2,7 @@ require('./../../src/sign-test')(__filename);
 
 var mymodule = require('./../../index');
 
-
-
-console.log(mymodule);
-
+//console.log(mymodule);
 
 xdescribe('implements interface of', function () {
 
