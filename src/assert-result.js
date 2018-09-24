@@ -32,9 +32,21 @@ function AssertResult() {
 
     this.toJSON = function() {
         return JSON.stringify(this.toObject());
-    }
+    };
 }
 
-module.exports = function assertResult() {
+function resultFactory() {
     return new AssertResult();
+}
+
+function isPrimitive(subject) {
+    return (['number', 'boolean', 'string', 'undefined', 'symbol']  || null === subject);
+}
+
+
+module.exports = {
+
+    Result: resultFactory,
+    isPrimitive: isPrimitive
+
 };
