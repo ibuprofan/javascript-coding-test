@@ -26,7 +26,7 @@ function AssertResult() {
                 out[k] = _self[k];
             }
         });
-        console.log(out);
+        //console.log(out);
         return out;
     };
 
@@ -40,7 +40,7 @@ function resultFactory() {
 }
 
 function isPrimitive(subject) {
-    return (['number', 'boolean', 'string', 'undefined', 'symbol']  || null === subject);
+    return (['number', 'boolean', 'string', 'undefined', 'symbol'].indexOf(typeof subject)>-1 || null === subject);
 }
 
 

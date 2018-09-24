@@ -1,6 +1,6 @@
 require('./../../src/sign-test')(__filename);
 
-var assertResult = require('./../../src/assert-result');
+var assertResult = require('./../../src/assert').Result;
 
 describe('implements', function () {
 
@@ -16,3 +16,4 @@ describe('implements', function () {
     });
 
 });
+

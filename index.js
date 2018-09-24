@@ -1,5 +1,5 @@
 module.exports = {
-    _assertEquals: require('./src/assert-equals'),
+    assert: require('./src/assert'),
     version: function () { return require('./package').version; },
     registry: require('./src/registry'),
     runAll: require('./src/run-all'),
