@@ -43,10 +43,22 @@ function isPrimitive(subject) {
     return (['number', 'boolean', 'string', 'undefined', 'symbol'].indexOf(typeof subject)>-1 || null === subject);
 }
 
+function isArray(subject) {
+    return !isPrimitive(subject) && subject instanceof Array;
+}
+
+function isObject(subject) {
+    return !isPrimitive(subject) && !isArray(subject) && typeof subject === 'object';
+}
+
+
+
 
 module.exports = {
 
     Result: resultFactory,
+    isArray: isArray,
+    isObject: isObject,
     isPrimitive: isPrimitive
 
 };
