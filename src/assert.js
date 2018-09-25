@@ -11,11 +11,18 @@ function AssertResult() {
     this.status = '';
     this.result = '';
     this.errors = [];
+    this.assertion = '';
 
     this.set = function(key, value) {
         if (typeof this[key] !== 'undefined') {
             this[key] = value;
         }
+        return this;
+    };
+
+
+    this.execute = function() {
+        // here we evaluate assertion
         return this;
     };
 
@@ -26,6 +33,7 @@ function AssertResult() {
                 out[k] = _self[k];
             }
         });
+        out['assertion'] = (typeof this.assertion === 'function') ? this.assertion.name : 'invalid-value';
         //console.log(out);
         return out;
     };
@@ -51,6 +59,9 @@ function isObject(subject) {
     return !isPrimitive(subject) && !isArray(subject) && typeof subject === 'object';
 }
 
+function equals(expected, actual) {
+
+}
 
 
 
@@ -59,6 +70,8 @@ module.exports = {
     Result: resultFactory,
     isArray: isArray,
     isObject: isObject,
-    isPrimitive: isPrimitive
-
+    isPrimitive: isPrimitive,
+    assert: {
+        equals: equals
+    }
 };

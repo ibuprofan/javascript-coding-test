@@ -1,6 +1,6 @@
 require('./../../src/sign-test')(__filename);
 
-var udf, nvl = require('./../../src/nvl');
+var udf, nvl = require('./../../src/util').nvl;
 
 describe('nvl', function () {
 

@@ -1,10 +1,7 @@
 'use strict';
 
-// String object Polyfill for older browsers
-
-if (!String.prototype.trim) String.prototype.trim = function () { return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, ''); };
-
-var instance = null,
+var trim = require('./util').trim,
+    instance = null,
     md5 = require('md5');
 
 function Registry() {
@@ -36,7 +33,7 @@ function Registry() {
     };
 
     this.sign = function(k) {
-        return md5((''+k).trim().toLocaleUpperCase());
+        return md5(trim(''+k).toLocaleUpperCase());
     };
 
     this.set = function(k, v) {
