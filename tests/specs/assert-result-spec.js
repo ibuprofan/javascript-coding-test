@@ -15,5 +15,11 @@ describe('implements', function () {
         expect(typeof assertResult().toJSON()).toBe('string');
     });
 
+
+    it('generic object and JSON getter', function () {
+        expect(typeof assertResult().set('expected', 123)).toBe('object');
+        expect(typeof assertResult().toJSON()).toBe('string');
+    });
+
 });
 

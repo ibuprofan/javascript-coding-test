@@ -43,7 +43,11 @@ function AssertResult() {
     };
 }
 
-function resultFactory() {
+/**
+ * Factory AssertResult
+ * @returns {AssertResult}
+ */
+function result() {
     return new AssertResult();
 }
 
@@ -67,7 +71,7 @@ function equals(expected, actual) {
 
 module.exports = {
 
-    Result: resultFactory,
+    Result: result,
     isArray: isArray,
     isObject: isObject,
     isPrimitive: isPrimitive,
