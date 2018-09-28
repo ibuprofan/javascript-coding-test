@@ -1,5 +1,7 @@
 'use strict';
 
+var resultFactory = require('./assert').Result;
+
 /**
  * Asserts "expected" versus "actual",
  * 'failing' the assertion (via Error) if a difference is found.
@@ -10,12 +12,11 @@
  * @param {function} Assertion function
  * @return AssertResult
  */
-module.exports = function assert(message, expected, given, assertion) {
-    return assertResult()
+module.exports = function test(message, expected, given, assertion) {
+    return resultFactory()
         .set('message', message)
         .set('expected', expected)
         .set('given', given)
         .set('assertion', assertion)
         .execute();
-
 };
