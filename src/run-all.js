@@ -12,4 +12,4 @@
 module.exports = function runAll(label, tests) {
 
   return [];
-}
+};

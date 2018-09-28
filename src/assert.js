@@ -113,7 +113,7 @@ function isObject(subject) {
     return !isPrimitive(subject) && !isArray(subject) && typeof subject === 'object';
 }
 
-function equals(expected, actual) {
+function assertsEqual(expected, actual) {
 
 }
 
@@ -126,6 +126,6 @@ module.exports = {
     isObject: isObject,
     isPrimitive: isPrimitive,
     assert: {
-        equals: equals
+        equals: assertsEqual
     }
 };
