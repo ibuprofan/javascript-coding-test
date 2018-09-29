@@ -4,7 +4,7 @@ var assertsEquals = require('./../../src/assert').assertsEquals;
 
 describe('assertsEquals', function () { // --------------------------
 
-    it('primitives', function () {
+    it('primitives: number, boolean, string, undefined, symbol', function () {
 
         expect(assertsEquals(true, true, [])).toBe(true);
         expect(assertsEquals(true, false, [])).toBe(false);
@@ -15,7 +15,7 @@ describe('assertsEquals', function () { // --------------------------
         expect(assertsEquals(123, 123, [])).toBe(true);
         expect(assertsEquals('123', 123, [])).toBe(true);
         expect(assertsEquals('123', 123.00, [])).toBe(true);
-        expect(assertsEquals('123.00', 123.00, [])).toBe(false); // Exception!
+        expect(assertsEquals('123.00', 123.00, [])).toBe(true);
         expect(assertsEquals('123.01', 123.01, [])).toBe(true);
 
         expect(assertsEquals('ABC', 'ABC', [])).toBe(true);

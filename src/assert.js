@@ -124,7 +124,11 @@ function isObject(subject) {
  */
 function assertsEquals(expected, actual, errors) {
     if (isPrimitive(expected) === true) {
-        return isPrimitive(actual) ? actual === expected || (''+actual).valueOf() === (''+expected).valueOf() : false;
+        return [
+            actual === expected,
+            (''+actual).valueOf() === (''+expected).valueOf(),
+            (parseFloat(actual) === parseFloat(expected) && (''+parseFloat(actual) !== 'NaN' && ''+parseFloat(expected) !== 'NaN'))
+        ].indexOf(true) > -1;
     } else {
         if (JSON.stringify(expected) === JSON.stringify(actual)) {
             return true; // simple 1:1 case - Array or Object
