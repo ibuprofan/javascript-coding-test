@@ -12,7 +12,7 @@
     "prep-tests": "rm -fr reports/; mkdir reports/; mkdir reports/eslint/; mkdir reports/junit/; echo \"Reports\n---\" > reports/README.md; echo \"Unit tests results\n---\" > reports/junit/README.md;  echo \"eslint results\n---\" > reports/eslint/README.md",
     "_eslint": "npm run aliases; OUT='./reports/eslint/eslint.txt'; date > $OUT; eslint src/*.js >> $OUT; eslint ./*.js >> $OUT; eslint tests/specs/*.js >> $OUT; echo \"DONE!\"",
     "_junit": "npm run prep-tests; npm run aliases; jasmine-node --junitreport --growl tests/specs/; mv reports/*.xml reports/junit/; git checkout tests/props/*.*",
-    "_coverage": "rm -fr reports/coverage/; npm run aliases; ./node_modules/.bin/istanbul cover --include-all-sources -x \"**src/sign-test.*\" ./node_modules/.bin/jasmine-node tests/specs/; rm -fr reports/coverage/; mv coverage reports/; git checkout tests/props/*.*",
+    "_coverage": "rm -fr reports/coverage/; npm run aliases; ./node_modules/.bin/istanbul cover --include-all-sources -x \"**docs/*\" ./node_modules/.bin/jasmine-node tests/specs/; rm -fr reports/coverage/; mv coverage reports/; git checkout tests/props/*.*",
     "_integration": "echo \"placeholder\"; exit 1",
     "test": "./node_modules/.bin/jasmine-node --growl tests/specs/"
   },
