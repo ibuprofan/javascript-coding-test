@@ -45,6 +45,8 @@ function Result() {
 
     this.execute = function() {
 
+        // @TODO: Broken... 
+
         if (typeof this.assertion === 'function') {
             try {
 
