@@ -65,6 +65,65 @@ function occurences(string, token) {
 }
 
 /**
+ * Fills string left-hand side with a given string (of length =1)
+ * @param {string} str
+ * @param {integer} length
+ * @param {string} fill
+ *
+ * @return {string}
+ */
+function lpad(str, length, fill) {
+    return (str+'').padStart(parseInt(length), trim(''+fill).substr(0, 1));
+}
+
+/**
+ * Fills string right-hand side with a given string (of length =1)
+ * @param {string} str
+ * @param {integer} length
+ * @param {string} fill
+ *
+ * @return {string}
+ */
+function rpad(str, length, fill) {
+    return (str+'').padEnd(parseInt(length), trim(''+fill).substr(0, 1));
+}
+
+
+/**
+ * Pulls highest numeric value out of array
+ * @param (array) arr
+ *
+ * @returns {number|null}
+ */
+function highest(arr) {
+    var val = -9007199254740991;
+    if (!Array.isArray(arr)) {
+        return null;
+    }
+    arr.forEach(function (el) {
+        if (typeof el === 'number' && el > val) val = el;
+    });
+    return val;
+}
+
+/**
+ * Pulls lowest numeric value out of array
+ * @param (array) arr
+ *
+ * @returns {number|null}
+ */
+function lowest(arr) {
+    var val = 9007199254740991;
+    if (!Array.isArray(arr)) {
+        return null;
+    }
+    arr.forEach(function (el) {
+        if (typeof el === 'number' && el < val) val = el;
+    });
+    return val;
+}
+
+/**
  * Replace
  * @param {string}       string Replace in
  * @param {string|Array} token  If found
@@ -101,5 +160,9 @@ module.exports = {
     trim: trim,
     contains: contains,
     occurences: occurences,
-    replace: replace
+    replace: replace,
+    highest: highest,
+    lowest: lowest,
+    lpad: lpad,
+    rpad: rpad
 };

@@ -113,11 +113,37 @@ function isObject(subject) {
     return !isPrimitive(subject) && !isArray(subject) && typeof subject === 'object';
 }
 
-function assertsEqual(expected, actual) {
-
+/**
+ * Assert equals
+ *
+ * @param {mixed} expected Expected value
+ * @param {mixed} actual   Given value (actual)
+ * @param (Array) errors   Errors gathered
+ *
+ * @returns {boolean}
+ */
+function assertsEquals(expected, actual, errors) {
+    if (isPrimitive(expected) === true) {
+        return isPrimitive(actual) ? actual === expected || (''+actual).valueOf() === (''+expected).valueOf() : false;
+    } else {
+        if (JSON.stringify(expected) === JSON.stringify(actual)) {
+            return true; // simple 1:1 case - Array or Object
+        } else {
+            try {
+                if (Array.isArray(expected) === true) {
+                    throw new Error('@TODO: Compare arrays');
+                } else if (typeof expected === 'object') {
+                    throw new Error('@TODO: Compare arrays');
+                } else {
+                    throw new Error('@TODO: Compare ' + (typeof expected));
+                }
+            } catch (err) {
+                if (Array.isArray(errors)) errors.push(err.message);
+                return false;
+            }
+        }
+    }
 }
-
-
 
 module.exports = {
 
@@ -125,7 +151,5 @@ module.exports = {
     isArray: isArray,
     isObject: isObject,
     isPrimitive: isPrimitive,
-    assert: {
-        equals: assertsEqual
-    }
+    assertsEquals: assertsEquals
 };

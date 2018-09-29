@@ -2,8 +2,6 @@ require('./../../src/sign-test')(__filename);
 
 var mymodule = require('./../../index');
 
-//console.log(mymodule);
-
 describe('implements interface of', function () {
 
     it('mymodule.version()', function () {
@@ -12,12 +10,11 @@ describe('implements interface of', function () {
     });
 
     it('mymodule.assert', function () {
-        expect(typeof mymodule.assert).toBe('Object');
+        expect(typeof mymodule.assert).toBe('object');
         expect(typeof mymodule.assert.Result).toBe('function');
         expect(typeof mymodule.assert.isArray).toBe('function');
         expect(typeof mymodule.assert.isObject).toBe('function');
         expect(typeof mymodule.assert.isPrimitive).toBe('function');
-        expect(typeof mymodule.assert.equals).toBe('function');
     });
 
     it('mymodule.test()', function () {
@@ -26,7 +23,7 @@ describe('implements interface of', function () {
 
     it('mymodule.runAll()', function () {
         expect(typeof mymodule.runAll).toBe('function');
-        expect(typeof mymodule.runAll()).toBe('Object'); // Array
+        expect(typeof mymodule.runAll()).toBe('object'); // Array
     });
 
 });

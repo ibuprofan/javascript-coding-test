@@ -57,5 +57,21 @@ describe('implements', function () {
 
     });
 
+    it('detects assertion function not passed', function () {
+
+        var resultErr = resultFactory()
+            .set('message', 'This is test/assertion description')
+            .set('expected', 'EXPECT')
+            .set('given', 'VALUE')
+            .set('blah', 'this will not be set') // key that is not declared is not set
+            .set('assertion', 'thisIsNotAFunction()')
+            .execute();
+
+        expect(resultErr.get('result')).toBe(false);
+        expect(JSON.stringify(resultErr.get('errors'))).toBe(JSON.stringify(['No assertion function of agreed interface provided.']));
+
+        expect(typeof resultErr.get('doesNotExist')).toBe('undefined');
+    });
+
 });
 
