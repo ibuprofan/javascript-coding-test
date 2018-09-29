@@ -137,9 +137,9 @@ function assertsEquals(expected, actual, errors) {
                 if (Array.isArray(expected) === true) {
                     throw new Error('@TODO: Compare arrays');
                 } else if (typeof expected === 'object') {
-                    throw new Error('@TODO: Compare arrays');
+                    throw new Error('@TODO: Compare objects');
                 } else {
-                    throw new Error('@TODO: Compare ' + (typeof expected));
+                    throw new Error('@TODO: Case not implemented for data type: ' + (typeof expected));
                 }
             } catch (err) {
                 if (Array.isArray(errors)) errors.push(err.message);
