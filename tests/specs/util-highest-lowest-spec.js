@@ -10,7 +10,14 @@ describe('highest', function () {
     });
 
     it('ignores non-numerics', function () {
-        expect(lowest([[-900], -10, {}, 14.14, [], 67.0, 99, 123.65])).toBe(-10);
+        expect(highest([[-900], -10, {}, 14.14, [], 67.0, 99, 123.65])).toBe(123.65);
+    });
+
+    it('ignores non-array input', function () {
+        expect(highest({})).toBe(null);
+        expect(highest([])).toBe(null);
+        expect(highest(123)).toBe(null);
+        expect(highest('ABBDBBD')).toBe(null);
     });
 
 });
@@ -23,6 +30,13 @@ describe('lowest', function () {
 
     it('ignores non-numerics', function () {
         expect(lowest(['bzz', '-6000', -10, 14.14, 67.0, 99, 123.65])).toBe(-10);
+    });
+
+    it('ignores non-array input', function () {
+        expect(lowest({})).toBe(null);
+        expect(lowest([])).toBe(null);
+        expect(lowest(123)).toBe(null);
+        expect(lowest('ABBDBBD')).toBe(null);
     });
 
 });

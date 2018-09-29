@@ -97,7 +97,7 @@ function rpad(str, length, fill) {
  */
 function highest(arr) {
     var val = -9007199254740991;
-    if (!Array.isArray(arr)) {
+    if (!Array.isArray(arr) || arr.length === 0) {
         return null;
     }
     arr.forEach(function (el) {
@@ -114,7 +114,7 @@ function highest(arr) {
  */
 function lowest(arr) {
     var val = 9007199254740991;
-    if (!Array.isArray(arr)) {
+    if (!Array.isArray(arr) || arr.length === 0) {
         return null;
     }
     arr.forEach(function (el) {
