@@ -1,0 +1,48 @@
+{
+  "name": "rjs-utf",
+  "version": "0.0.1",
+  "description": "Rudimentary JS Unit Test Framework (the challenge)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "todo": "EXEC=`grep -inR --exclude-dir=node_modules \"@TODO:\" ./ | sed -e '/package.json/d'`; echo \"\"; echo \"$EXEC\"; echo \"\";",
+    "aliases": "alias jasmine-node=./node_modules/.bin/jasmine-node; alias eslint=./node_modules/.bin/eslint; alias istanbul=./node_modules/.bin/istanbul",
+    "prep-tests": "rm -fr reports/; mkdir reports/; mkdir reports/eslint/; mkdir reports/junit/; echo \"Reports\n---\" > reports/README.md; echo \"Unit tests results\n---\" > reports/junit/README.md;  echo \"eslint results\n---\" > reports/eslint/README.md",
+    "_eslint": "npm run aliases; OUT='./reports/eslint/eslint.txt'; date > $OUT; eslint src/*.js >> $OUT; eslint ./*.js >> $OUT; eslint tests/specs/*.js >> $OUT; echo \"DONE!\"",
+    "_junit": "npm run prep-tests; npm run aliases; jasmine-node --junitreport --growl tests/specs/; mv reports/*.xml reports/junit/; git checkout tests/props/*.*",
+    "_coverage": "rm -fr reports/coverage/; npm run aliases; ./node_modules/.bin/istanbul cover --include-all-sources -x \"**docs/*\" ./node_modules/.bin/jasmine-node tests/specs/; rm -fr reports/coverage/; mv coverage reports/; git checkout tests/props/*.*",
+    "_integration": "echo \"placeholder\"; exit 1",
+    "test": "./node_modules/.bin/jasmine-node --growl tests/specs/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://martinswiderski@github.com/ibuprofan/rjs-utf.git"
+  },
+  "keywords": [
+    "unit",
+    "tests",
+    "tdd",
+    "assertion",
+    "assertEqual"
+  ],
+  "author": "Martin Swiderski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ibuprofan/rjs-utf/issues"
+  },
+  "homepage": "https://github.com/ibuprofan/rjs-utf#readme",
+  "dependencies": {
+    "md5": "^2.2.1",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {
+    "bash-color": "0.0.4",
+    "eslint": "3.19.0",
+    "fs": "0.0.1-security",
+    "istanbul": "0.4.5",
+    "jasmine-node": "1.14.5",
+    "md5-file": "^3.1.1"
+  }
+}

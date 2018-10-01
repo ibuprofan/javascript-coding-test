@@ -1,3 +1,6 @@
+# package lock
+*-lock.json
+
 # IDE
 .idea/
 
