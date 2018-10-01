@@ -153,6 +153,35 @@ function replace(string, token, to) {
     }
 }
 
+/**
+ * Turns strign with placeholders into populated string
+ * e.g. 'Type mismatch [master] {master} != [input] {input}'
+ *      {master: 'object', input: 'array'}
+ *      into
+ *      'Type mismatch [master] object != [input] array'
+ *
+ * @param {string} string Template
+ * @param {params} values K=>V pairs
+ *
+ * @returns {string}
+ */
+function template(string, values) {
+    string = replace(string, ['{'], '\n:');
+    string = replace(string, ['}'], '\n');
+    var out = [], chunks = string.split('\n');
+    chunks.forEach(function(el) {
+        if (trim(el).substr(0, 1) === ':') {
+            el = trim(el.substr(1, (el.length-1)));
+            if (values[el]) {
+                out.push(values[el]);
+            }
+        } else {
+            out.push(el);
+        }
+    });
+    return out.join('');
+}
+
 module.exports = {
     nvl: nvl,
     trim: trim,
@@ -162,5 +191,6 @@ module.exports = {
     highest: highest,
     lowest: lowest,
     lpad: lpad,
-    rpad: rpad
+    rpad: rpad,
+    template: template
 };
