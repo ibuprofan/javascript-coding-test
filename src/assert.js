@@ -50,7 +50,10 @@ function Result() {
         if (typeof this.assertion === 'function') {
             try {
 
-                this.result = this.assertion(this.given, this.actual); // any non exception execution is = true
+                this.result = this.assertion(
+                    this.expected,
+                    this.given
+                ); // any non exception execution is = true
 
             } catch (err) {
 
@@ -140,8 +143,6 @@ function assertsEquals(expected, actual, errors) {
                     throw new Error('@TODO: Compare arrays');
                 } else if (typeof expected === 'object') {
                     throw new Error('@TODO: Compare objects');
-                } else {
-                    throw new Error('@TODO: Case not implemented for data type: ' + (typeof expected));
                 }
             } catch (err) {
                 if (Array.isArray(errors)) errors.push(err.message);

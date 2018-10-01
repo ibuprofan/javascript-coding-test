@@ -26,7 +26,7 @@ describe('implements', function () {
         var result = resultFactory()
                 .set('message', 'This is test/assertion description')
                 .set('expected', 'EXPECT')
-                .set('given', 'VALUE')
+                .set('given', 'EXPECT')
                 .set('blah', 'this will not be set') // key that is not declared is not set
                 .set('assertion', function(g, a) {
                     return g === a;
@@ -38,7 +38,7 @@ describe('implements', function () {
         expect(exportedObject1.id).toBe(result.id()); // forked from the same object
         expect(exportedObject1.message).toBe('This is test/assertion description');
         expect(exportedObject1.expected).toBe('EXPECT');
-        expect(exportedObject1.given).toBe('VALUE');
+        expect(exportedObject1.given).toBe('EXPECT');
         expect(exportedObject1.assertion).toBe('function:__anonymous__');
         expect(typeof exportedObject1['blah']).toBe('undefined'); // under no condition is non-declared key value set
 
@@ -46,14 +46,14 @@ describe('implements', function () {
         expect(exportedObject2.id).toBe(result.id()); // forked from the same object
         expect(exportedObject2.message).toBe('This is test/assertion description');
         expect(exportedObject2.expected).toBe('EXPECT');
-        expect(exportedObject2.given).toBe('VALUE');
+        expect(exportedObject2.given).toBe('EXPECT');
         expect(exportedObject2.assertion).toBe('function:myAssertion');
         expect(typeof exportedObject2['blah']).toBe('undefined'); // under no condition is non-declared key value set
 
         result.execute(); // exec on original object
 
-        expect(result.get('result')).toBe(false); // not equal, assertion failed
-        expect(JSON.stringify(result.get('errors'))).toBe(JSON.stringify(['expected not equals actual']));
+        expect(result.get('result')).toBe(true);
+        expect(JSON.stringify(result.get('errors'))).toBe(JSON.stringify([]));
 
     });
 

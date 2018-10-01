@@ -10,12 +10,12 @@ describe('test()', function () {
             'ABC',
             'ABC',
             function(g, a) {
-                console.log('G: '+g)
-                console.log('A: '+a)
-                return g === a;
+                if (g !== a) {
+                    throw new Error('not equal');
+                }
+                return true;
             }
         );
-        console.log(resultOk);
         expect(resultOk.get('result')).toBe(true);
     });
 
@@ -23,10 +23,8 @@ describe('test()', function () {
         var resultFail = test(
             'Compare two string',
             'ABC',
-            'ABC',
+            'DIFFERENT',
             function(g, a) {
-                console.log('G2: '+g)
-                console.log('A2: '+a)
                 if (g === a) return true;
                 throw new Error('Custom error');
             }
