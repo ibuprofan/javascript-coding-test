@@ -10,6 +10,5 @@
  * @return {Array} results of the tests asserted
  */
 module.exports = function runAll(label, tests) {
-
-  return [];
+    return [label, tests];
 };

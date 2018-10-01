@@ -50,7 +50,7 @@ function Registry() {
 
         var undef;
         return (!_lookup[this.sign(k)]) ? undef : _data[this.sign(k)];
-    }
+    };
 }
 
 if (instance === null) {

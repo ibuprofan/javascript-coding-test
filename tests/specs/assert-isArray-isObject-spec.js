@@ -40,7 +40,7 @@ describe('implements isObject() ', function () {
         expect(isObject({collection: [1, 2, 4, 8, 16]})).toBe(true);
         function MyObject() {
             this.collection = [1, 2, 4, 8, 16];
-        };
+        }
         expect(isObject(new MyObject())).toBe(true);
         expect(JSON.stringify(new MyObject())).toBe(JSON.stringify({collection: [1, 2, 4, 8, 16]}));
     });

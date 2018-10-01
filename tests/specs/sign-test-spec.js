@@ -14,10 +14,10 @@ function MockConsole () {
     };
     this.log = function(input) {
         return _string = input;
-    }
+    };
 }
 
-let mockConsole = new MockConsole();
+var mockConsole = new MockConsole();
 
 // md5sum ../props/test.js = '058eb02dfd08e347c40ae14e9f2e4600'
 require('./../../src/sign-test')(__dirname+'/../props/test.js', mockConsole);

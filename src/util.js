@@ -141,8 +141,6 @@ function replace(string, token, to) {
             token = [''+token];
         }
 
-        var err = [];
-
         token.forEach(function (el) {
             if (replaceable(el)) {
                 string = string.replace(new RegExp(''+el, 'g'), (''+to));
