@@ -24,6 +24,6 @@ require('./../../src/sign-test')(__dirname+'/../props/test.js', mockConsole);
 
 describe('console can be injected', function () {
     it('string contains a valid MD5', function () {
-        expect(mockConsole.captured().contains('058eb02dfd08e347c40ae14e9f2e4600')).toBe(true);
+        expect(mockConsole.captured().contains('058eb02d-fd08e347-c40ae14e-9f2e-4600')).toBe(true);
     });
 });
