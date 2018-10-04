@@ -5,11 +5,12 @@ var template = require('./util').template,
 
 
 /**
+ * Compares arrays
  *
- * @param {Array}  master
- * @param {Array}  input
- * @param {Array}  details
- * @param {number} depth
+ * @param {Array}  master  Master array
+ * @param {Array}  input   Input array
+ * @param {Array}  details Details
+ * @param {number} depth   Depth indication
  *
  * @returns {boolean} true only if matched
  */
@@ -17,8 +18,25 @@ function compareArrays(master, input, details, depth) {
     return false;
 }
 
+/**
+ * Compares objects
+ *
+ * @param {Array}  master  Master object
+ * @param {Array}  input   Input object
+ * @param {Array}  details Details
+ * @param {number} depth   Depth indication
+ *
+ * @returns {boolean} true only if matched
+ */
+function compareObjects(master, input, details, depth) {
+    return false;
+}
 
-function compareObjects(master, input, details) {
+function normalizeArray(input) {
+
+}
+
+function normalizeObject(input) {
 
 }
 
@@ -68,24 +86,49 @@ function _getName(subject, t) {
  * @returns {boolean} Status
  */
 function typeMatch(e, i, details) {
-    if (false === test(m, i)) {
-        if (Array.isArray(details)) {
-            details.push(
-                template(
-                    'Type mismatch [master] {master} != [input] {input}',  // todo master.prop
-                    { input: (typeof i), expected: (typeof e) }
-                )
-            );
-        }
-        return false;
-    } else {
-        return true;
+
+    var reflection = {
+        e: inspect(e),
+        i: inspect(i)
+    };
+
+    if (reflection.e.type === reflection.i.type && reflection.e.name === reflection.i.name) return true;
+
+    if (Array.isArray(details)) {
+        details.push(
+            template(
+                'Type mismatch [expected] {expected} is NOT [input] {input}',  // todo master.prop
+                {
+                    input: mergeWords([reflection.i.type, reflection.i.name], ':'),
+                    expected: mergeWords([reflection.e.type, reflection.e.name], ':')
+                }
+            )
+        );
     }
+    return false;
 }
+
+function mergeWords(words, join) {
+    var out = [];
+    words.forEach(function (el) {
+        if (null !== el) out.push(el+'');
+    });
+    return (out.length === 1) ? out[0] : out.join(join);
+}
+
+
 
 module.exports = {
     arrays: compareArrays,
     objects: compareObjects,
+    normalize: {
+        array: normalizeArray,
+        object: normalizeObject
+    },
+    compare: {
+        objects: compareObjects,
+        arrays: compareArrays
+    },
     typeMatch: typeMatch,
     inspect: inspect
 };
