@@ -44,6 +44,7 @@ function inspect(subject) {
     if (r.name === 'Object' && r.type === 'object') {
         r.name = '__anonymous__';
     }
+
     return r;
 }
 

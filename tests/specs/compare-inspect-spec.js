@@ -29,8 +29,6 @@ describe('inspect', function () {
         inspectFun1 = inspect(function(x) { return 1; }),
         inspectFun2 = inspect(fun2);
 
-    console.log(inspectFun1);
-
     it('object #1', function () {
         expect(inspectObj1.md5).toBe('85355E14EF31949E860FBE30F980AE09');
         expect(inspectObj1.type).toBe('object');
@@ -91,7 +89,7 @@ describe('inspect', function () {
         expect(inspectFun1.md5).toBe('99914B932BD37A50B983C5E7C90AE93B');
         expect(inspectFun1.type).toBe('function');
         expect(inspectFun1.name).toBe('__anonymous__');
-        expect(inspectFun1.value).toBe(function(x) { return 1; });
+        expect(typeof inspectFun1.value).toBe(typeof function(x) { return 1; });
     });
     it('function #2', function () {
         expect(inspectFun2.md5).toBe('99914B932BD37A50B983C5E7C90AE93B');
